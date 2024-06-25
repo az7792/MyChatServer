@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JsonUtil {
-
+    
     static ObjectMapper objectMapper;
 
     @Autowired
