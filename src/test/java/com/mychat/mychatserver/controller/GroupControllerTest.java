@@ -37,7 +37,7 @@ public class GroupControllerTest {
         when(groupService.isGroupExist(groupId)).thenReturn(true);
 
         // 发起 GET 请求，查询群组是否存在
-        mockMvc.perform(MockMvcRequestBuilders.get("/exists/groupid")
+        mockMvc.perform(MockMvcRequestBuilders.post("/exists/groupid")
                         .param("groupid", groupId.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exist").value(true));
     }
@@ -113,7 +113,7 @@ public class GroupControllerTest {
         when(groupService.getGroupByName(groupName)).thenReturn(groupList);
 
         // 发起 GET 请求，根据群名称获取群组信息
-        mockMvc.perform(MockMvcRequestBuilders.get("/selectgroup/name")
+        mockMvc.perform(MockMvcRequestBuilders.post("/selectgroup/name")
                         .param("groupname", groupName))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].groupid").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].groupname").value(groupName))
@@ -130,7 +130,7 @@ public class GroupControllerTest {
         when(groupService.updateGroupName(groupId, newGroupName)).thenReturn(true);
 
         // 发起 PUT 请求，修改群名称
-        mockMvc.perform(MockMvcRequestBuilders.put("/updategroup")
+        mockMvc.perform(MockMvcRequestBuilders.post("/updategroup")
                         .param("groupid", groupId.toString())
                         .param("groupname", newGroupName))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
@@ -146,7 +146,7 @@ public class GroupControllerTest {
         when(groupService.updateGroupName(groupId, newGroupName)).thenReturn(false);
 
         // 发起 PUT 请求，修改群名称
-        mockMvc.perform(MockMvcRequestBuilders.put("/updategroup")
+        mockMvc.perform(MockMvcRequestBuilders.post("/updategroup")
                         .param("groupid", groupId.toString())
                         .param("groupname", newGroupName))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(false));
@@ -161,7 +161,7 @@ public class GroupControllerTest {
         when(groupService.deleteGroupByUid(groupId)).thenReturn(true);
 
         // 发起 DELETE 请求，删除群组
-        mockMvc.perform(MockMvcRequestBuilders.delete("/deletegroup/uid")
+        mockMvc.perform(MockMvcRequestBuilders.post("/deletegroup/uid")
                         .param("groupid", groupId.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true));
     }
@@ -175,7 +175,7 @@ public class GroupControllerTest {
         when(groupService.deleteGroupByUid(groupId)).thenReturn(false);
 
         // 发起 DELETE 请求，删除群组
-        mockMvc.perform(MockMvcRequestBuilders.delete("/deletegroup/uid")
+        mockMvc.perform(MockMvcRequestBuilders.post("/deletegroup/uid")
                         .param("groupid", groupId.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(false));
     }

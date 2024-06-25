@@ -29,19 +29,19 @@ public class GroupConnectController {
     }
 
     @Operation(summary = "根据群id与用户id查询群组成员")
-    @GetMapping("/selectuseringroup/uid")
+    @PostMapping("/selectuseringroup/uid")
     public User getContactByUid(@RequestParam Integer groupid, @RequestParam Integer userid) {
         return groupConnectService.getContactByUid(groupid, userid);
     }
 
     @Operation(summary = "根据群id与用户名查询群组成员")
-    @GetMapping("/selectuseringroup/username")
+    @PostMapping("/selectuseringroup/username")
     public List<User> getContactByName(@RequestParam Integer groupid, @RequestParam String username) {
         return groupConnectService.getContactByName(groupid, username);
     }
 
     @Operation(summary = "根据群id拉取所有用户Uid")
-    @GetMapping("/getgroupmembers/uid")
+    @PostMapping("/getgroupmembers/uid")
     public List<Integer> getAllUidByGroupId(@RequestParam Integer groupid) {
         return groupConnectService.getAllUidByGroupId(groupid);
     }
@@ -59,7 +59,7 @@ public class GroupConnectController {
     }
 
     @Operation(summary = "根据群组id与用户id删除用户")
-    @DeleteMapping("/deletemember/uid")
+    @PostMapping("/deletemember/uid")
     public Map<String, Object> deleteMemberByUid(@RequestParam Integer groupid, @RequestParam Integer uid) {
         Map<String, Object> response = new HashMap<>();
         boolean success = groupConnectService.deleteMemberByUid(groupid, uid);

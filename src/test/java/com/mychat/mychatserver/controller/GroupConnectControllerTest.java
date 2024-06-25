@@ -57,7 +57,7 @@ public class GroupConnectControllerTest {
 
         when(groupConnectService.getContactByUid(anyInt(), anyInt())).thenReturn(user);
 
-        mockMvc.perform(get("/selectuseringroup/uid")
+        mockMvc.perform(post("/selectuseringroup/uid")
                         .param("groupid", "1")
                         .param("userid", "1"))
                 .andExpect(status().isOk())
@@ -79,7 +79,7 @@ public class GroupConnectControllerTest {
 
         when(groupConnectService.getContactByName(anyInt(), anyString())).thenReturn(userList);
 
-        mockMvc.perform(get("/selectuseringroup/username")
+        mockMvc.perform(post("/selectuseringroup/username")
                         .param("groupid", "1")
                         .param("username", "testuser"))
                 .andExpect(status().isOk())
@@ -96,7 +96,7 @@ public class GroupConnectControllerTest {
 
         when(groupConnectService.getAllUidByGroupId(anyInt())).thenReturn(uidList);
 
-        mockMvc.perform(get("/getgroupmembers/uid")
+        mockMvc.perform(post("/getgroupmembers/uid")
                         .param("groupid", "1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(3)))
@@ -157,7 +157,7 @@ public class GroupConnectControllerTest {
     public void testDeleteMemberByUid() throws Exception {
         when(groupConnectService.deleteMemberByUid(anyInt(), anyInt())).thenReturn(true);
 
-        mockMvc.perform(delete("/deletemember/uid")
+        mockMvc.perform(post("/deletemember/uid")
                         .param("groupid", "1")
                         .param("uid", "1"))
                 .andExpect(status().isOk())

@@ -19,7 +19,7 @@ public class GroupController {
     private GroupService groupService;
 
     @Operation(summary = "根据id查询群组是否存在")
-    @GetMapping("/exists/groupid")
+    @PostMapping("/exists/groupid")
     public Map<String, Object> isGroupExist(Integer groupid) {
         Map<String, Object> response = new HashMap<>();
         response.put("exist", groupService.isGroupExist(groupid));
@@ -42,13 +42,13 @@ public class GroupController {
     }
 
     @Operation(summary = "根据群名称查询群组")
-    @GetMapping("/selectgroup/name")
+    @PostMapping("/selectgroup/name")
     public List<Group> getGroupByName(String groupname) {
         return groupService.getGroupByName(groupname);
     }
 
     @Operation(summary = "修改群名称")
-    @PutMapping("/updategroup")
+    @PostMapping("/updategroup")
     public Map<String, Object> updateGroupName(Integer groupid, String groupname) {
         Map<String, Object> response = new HashMap<>();
         boolean success = groupService.updateGroupName(groupid, groupname);
@@ -57,7 +57,7 @@ public class GroupController {
     }
 
     @Operation(summary = "根据群组id删除群组")
-    @DeleteMapping("/deletegroup/uid")
+    @PostMapping("/deletegroup/uid")
     public Map<String, Object> deleteGroupByUid(Integer groupid) {
         Map<String, Object> response = new HashMap<>();
         boolean success = groupService.deleteGroupByUid(groupid);

@@ -33,8 +33,8 @@ public class UserControllerTest {
         // 模拟用户存在
         when(userService.isUserExist(uid)).thenReturn(true);
 
-        // 发起 GET 请求，查询用户是否存在
-        mockMvc.perform(MockMvcRequestBuilders.get("/exists/uid")
+        // 发起 POST 请求，查询用户是否存在
+        mockMvc.perform(MockMvcRequestBuilders.post("/exists/uid")
                         .param("uid", uid.toString()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exist").value(true));
     }
@@ -47,8 +47,8 @@ public class UserControllerTest {
         // 模拟用户邮箱存在
         when(userService.isEmailExist(email)).thenReturn(true);
 
-        // 发起 GET 请求，查询邮箱是否存在
-        mockMvc.perform(MockMvcRequestBuilders.get("/exists/email")
+        // 发起 POST 请求，查询邮箱是否存在
+        mockMvc.perform(MockMvcRequestBuilders.post("/exists/email")
                         .param("email", email))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.exist").value(true));
     }

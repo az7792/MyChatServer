@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @Operation(summary = "根据id查询用户是否存在")
-    @GetMapping("/exists/uid")
+    @PostMapping("/exists/uid")
     public Map<String, Object> isUserExist(Integer uid) {
         Map<String, Object> response = new HashMap<>();
         response.put("exist", userService.isUserExist(uid));
@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @Operation(summary = "根据email查询用户是否存在")
-    @GetMapping("/exists/email")
+    @PostMapping("/exists/email")
     public Map<String, Object> isEmailExist(String email) {
         Map<String, Object> response = new HashMap<>();
         response.put("exist", userService.isEmailExist(email));
