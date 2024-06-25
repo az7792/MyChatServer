@@ -1,6 +1,9 @@
 package com.mychat.mychatserver.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.time.LocalDateTime;
+@TableName("captchas")
 public class Captcha {
     private String email; // 验证码发起者邮箱
     private String code;  //验证码
