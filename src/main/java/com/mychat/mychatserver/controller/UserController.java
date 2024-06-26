@@ -47,7 +47,7 @@ public class UserController {
 
     @Operation(summary = "注册新用户")
     @PostMapping("/register")
-    public Map<String, Object> register(@RequestBody User user) {
+    public Map<String, Object> register(User user) {
         Map<String, Object> response = new HashMap<>();
         boolean success = userService.register(user);
         response.put("success", success);
