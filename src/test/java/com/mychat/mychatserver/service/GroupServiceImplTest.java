@@ -55,7 +55,7 @@ public class GroupServiceImplTest {
         group.setOwnerid(1);
 
         when(userMapper.isUserExist(anyInt())).thenReturn(true);
-        when(groupMapper.insert(any(Group.class))).thenAnswer(invocation -> {
+        when(groupMapper.creatGroup(any(Group.class))).thenAnswer(invocation -> {
             Group createdGroup = invocation.getArgument(0);
             createdGroup.setGroupid(1); // Simulate generated ID
             return 1;
@@ -65,7 +65,7 @@ public class GroupServiceImplTest {
         boolean success = groupService.addGroupById(group);
 
         assertThat(success).isTrue();
-        verify(groupMapper, times(1)).insert(any(Group.class));
+        verify(groupMapper, times(1)).creatGroup(any(Group.class));
         verify(groupConnectMapper, times(1)).insertGroupMember(anyInt(), anyInt());
     }
 
@@ -76,12 +76,12 @@ public class GroupServiceImplTest {
         group.setOwnerid(1);
 
         when(userMapper.isUserExist(anyInt())).thenReturn(true);
-        when(groupMapper.insert(any(Group.class))).thenReturn(0);
+        when(groupMapper.creatGroup(any(Group.class))).thenReturn(0);
 
         boolean success = groupService.addGroupById(group);
 
         assertThat(success).isFalse();
-        verify(groupMapper, times(1)).insert(any(Group.class));
+        verify(groupMapper, times(1)).creatGroup(any(Group.class));
         verify(groupConnectMapper, never()).insertGroupMember(anyInt(), anyInt());
     }
 
@@ -141,5 +141,29 @@ public class GroupServiceImplTest {
         assertThat(success).isTrue();
         verify(groupMapper, times(1)).isGroupExist(1);
         verify(groupMapper, times(1)).deleteByGroupId(1);
+    }
+
+    @Test
+    public void testGetGroupAvatarByGid() {
+        when(groupMapper.isGroupExist(1)).thenReturn(true);
+        when(groupMapper.getAvatarByUid(1)).thenReturn("path/to/avatar.jpg");
+
+        String avatar = groupService.getGroupAvatarByGid(1);
+
+        assertThat(avatar).isEqualTo("path/to/avatar.jpg");
+        verify(groupMapper, times(1)).isGroupExist(1);
+        verify(groupMapper, times(1)).getAvatarByUid(1);
+    }
+
+    @Test
+    public void testUpdateGroupAvatarByGid() {
+        when(groupMapper.isGroupExist(1)).thenReturn(true);
+        when(groupMapper.updateAvatarByUid(1, "path/to/updated.jpg")).thenReturn(1);
+
+        boolean success = groupService.updateGroupAvatarByGid(1, "path/to/updated.jpg");
+
+        assertThat(success).isTrue();
+        verify(groupMapper, times(1)).isGroupExist(1);
+        verify(groupMapper, times(1)).updateAvatarByUid(eq(1), eq("path/to/updated.jpg"));
     }
 }

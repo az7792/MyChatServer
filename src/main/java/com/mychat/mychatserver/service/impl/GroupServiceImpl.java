@@ -32,7 +32,7 @@ public class GroupServiceImpl implements GroupService {
         if (!userMapper.isUserExist(group.getOwnerid())) {
             return false;
         }
-        int status1 = groupMapper.insert(group);
+        int status1 = groupMapper.creatGroup(group);
         int status2 = groupConnectMapper.insertGroupMember(group.getGroupid(), group.getOwnerid());
         return status1 > 0 && status2 > 0;
     }
@@ -64,5 +64,21 @@ public class GroupServiceImpl implements GroupService {
             return false;
         }
         return groupMapper.deleteByGroupId(groupid) > 0;
+    }
+
+    @Override
+    public String getGroupAvatarByGid(Integer groupid) {
+        if (!groupMapper.isGroupExist(groupid)) {
+            return null;
+        }
+        return groupMapper.getAvatarByUid(groupid);
+    }
+
+    @Override
+    public boolean updateGroupAvatarByGid(Integer groupid, String avatar) {
+        if (!groupMapper.isGroupExist(groupid)) {
+            return false;
+        }
+        return groupMapper.updateAvatarByUid(groupid, avatar) > 0;
     }
 }

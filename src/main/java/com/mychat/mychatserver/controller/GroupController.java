@@ -64,4 +64,28 @@ public class GroupController {
         response.put("success", success);
         return response;
     }
+
+    @Operation(summary = "根据群组ID获取头像")
+    @PostMapping("/getGroupAvatar")
+    public Map<String, Object> getGroupAvatarByGid(Integer gid) {
+        Map<String, Object> response = new HashMap<>();
+        String avatar = groupService.getGroupAvatarByGid(gid);
+        if (avatar == null) {
+            response.put("success", false);
+            response.put("message", "Group avatar not found");
+        } else {
+            response.put("success", true);
+            response.put("avatar", avatar);
+        }
+        return response;
+    }
+
+    @Operation(summary = "根据群组ID更新头像")
+    @PostMapping("/updateGroupAvatar")
+    public Map<String, Object> updateGroupAvatarByGid(Integer gid, String avatar) {
+        Map<String, Object> response = new HashMap<>();
+        boolean success = groupService.updateGroupAvatarByGid(gid, avatar);
+        response.put("success", success);
+        return response;
+    }
 }

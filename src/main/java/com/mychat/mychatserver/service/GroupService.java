@@ -3,7 +3,6 @@ package com.mychat.mychatserver.service;
 import com.mychat.mychatserver.entity.Group;
 
 import java.util.List;
-import java.util.Map;
 
 public interface GroupService {
     boolean isGroupExist(Integer groupid);
@@ -12,4 +11,6 @@ public interface GroupService {
     List<Group> getGroupByName(String groupname);
     boolean updateGroupName(Integer groupid, String groupname);
     boolean deleteGroupByUid(Integer groupid);
+    String getGroupAvatarByGid(Integer groupid);
+    boolean updateGroupAvatarByGid(Integer groupid, String avatar);
 }

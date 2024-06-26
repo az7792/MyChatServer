@@ -10,6 +10,15 @@ public class Group {
     private Integer groupid;
     private String groupname;
     private Integer ownerid;
+    private String avatar;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public Integer getGroupid() {
         return groupid;
@@ -41,6 +50,7 @@ public class Group {
                 "groupid=" + groupid +
                 ", groupname='" + groupname + '\'' +
                 ", ownerid=" + ownerid +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }
