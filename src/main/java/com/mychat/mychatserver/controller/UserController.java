@@ -51,6 +51,10 @@ public class UserController {
         Map<String, Object> response = new HashMap<>();
         boolean success = userService.register(user);
         response.put("success", success);
+        if(success){
+            Integer uid = userService.getUserByEmail(user.getEmail()).getUid();
+            response.put("UID",uid);
+        }
         return response;
     }
     @Operation(summary = "更新用户信息(用户名头像邮箱)")
