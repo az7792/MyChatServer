@@ -66,4 +66,10 @@ public class GroupConnectController {
         response.put("success", success);
         return response;
     }
+
+    @Operation(summary = "根据UID获取其所在群id")
+    @PostMapping("/getGroupids/uid")
+    public List<Integer> getAllGroupidByUid(@RequestParam Integer uid) {
+        return groupConnectService.getAllGroupidByUid(uid);
+    }
 }

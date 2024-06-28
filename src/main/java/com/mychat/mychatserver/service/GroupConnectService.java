@@ -13,4 +13,5 @@ public interface GroupConnectService {
     List<User> getAllUserByGroupId(Integer groupid);
     List<Group> getAllGroupOfUser(Integer uid);
     boolean deleteMemberByUid(Integer groupid, Integer uid);
+    List<Integer> getAllGroupidByUid(Integer uid);
 }

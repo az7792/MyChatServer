@@ -6,6 +6,7 @@ import com.mychat.mychatserver.mapper.GroupConnectMapper;
 import com.mychat.mychatserver.mapper.GroupMapper;
 import com.mychat.mychatserver.mapper.UserMapper;
 import com.mychat.mychatserver.service.GroupConnectService;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,5 +90,11 @@ public class GroupConnectServiceImpl implements GroupConnectService {
             return false;
         }
         return groupConnectMapper.deleteContactById(groupid, uid) == 1;
+    }
+
+    //根据UID获取其所在群id
+    @Override
+    public List<Integer> getAllGroupidByUid(Integer uid){
+        return groupConnectMapper.selectAllGroupOfUser(uid);
     }
 }
