@@ -52,4 +52,8 @@ public interface UserMapper {
     @Update("UPDATE users SET avatar = #{avatar} WHERE uid = #{uid}")
     int updateAvatarByUid(@Param("uid") Integer uid, @Param("avatar") String avatar);
 
+    //更新用户信息(不包含密码)
+    @Update("UPDATE users SET username = #{username}, email = #{email}, avatar = #{avatar} WHERE uid = #{uid}")
+    int updateUserInfo(User user);
+
 }

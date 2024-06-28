@@ -64,4 +64,12 @@ public class UserServiceImpl implements UserService {
     public boolean updateAvatarByUid(Integer uid, String avatar) {
         return userMapper.updateAvatarByUid(uid, avatar) == 1;
     }
+
+    @Override
+    public boolean updateUserInfo(User user){
+        if (!userMapper.isUserExist(user.getUid())) {
+            return false;
+        }
+        return userMapper.updateUserInfo(user)>=0;
+    }
 }

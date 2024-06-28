@@ -53,6 +53,15 @@ public class UserController {
         response.put("success", success);
         return response;
     }
+    @Operation(summary = "更新用户信息(用户名头像邮箱)")
+    @PostMapping("/updateUserInfo")
+    public Map<String, Object> updateUserInfo(User user) {
+        Map<String, Object> response = new HashMap<>();
+        boolean success = userService.updateUserInfo(user);
+        response.put("success", success);
+        return response;
+    }
+
 
     @Operation(summary = "通过UID登录")
     @PostMapping("/login/uid")

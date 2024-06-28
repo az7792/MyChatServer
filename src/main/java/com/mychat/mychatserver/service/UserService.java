@@ -13,4 +13,5 @@ public interface UserService {
     boolean updatePassword(String email, String password);
     String getAvatarByUid(Integer uid);
     boolean updateAvatarByUid(Integer uid, String avatar);
+    boolean updateUserInfo(User user);
 }
