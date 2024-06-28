@@ -26,5 +26,8 @@ public interface ContactMapper {
     @Select("SELECT COUNT(*) > 0 FROM contact WHERE uid1 = #{uid1} AND uid2 = #{uid2}")
     boolean isContactExist(Integer uid1, Integer uid2);
 
+    //根据uid获取好友id列表
+    @Select("Select uid2 FROM contact WHERE uid1=#{uid1}")
+    List<Integer> getIdsByUid(Integer  uid1);
 
 }

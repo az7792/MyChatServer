@@ -42,4 +42,10 @@ public class ContactController {
         response.put("success", success);
         return response;
     }
+
+    @Operation(summary = "根据uid获取用户所有联系人UID")
+    @PostMapping("/uidList")
+    public List<Integer> getIdsByUid(@RequestParam Integer uid) {
+        return contactService.getIdsByUid(uid);
+    }
 }

@@ -9,4 +9,5 @@ public interface ContactService {
     boolean addContactById(Integer uid1, Integer uid2);
     List<User> getContactByUid(Integer uid);
     boolean deleteContactByUid(Integer uid1, Integer uid2);
+    List<Integer> getIdsByUid(Integer uid);
 }

@@ -51,4 +51,9 @@ public class ContactServiceImpl implements ContactService {
         }
         return contactMapper.deleteContactById(uid1, uid2) == 1 && contactMapper.deleteContactById(uid2, uid1) == 1;
     }
+
+    @Override
+    public List<Integer> getIdsByUid(Integer uid) {
+        return contactMapper.getIdsByUid(uid);
+    }
 }
